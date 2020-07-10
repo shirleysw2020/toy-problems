@@ -38,26 +38,27 @@
 
 //2nd method: slice out the numfrom the array when match with current nnumber:
 var evenOccurrence = function(arr) {
-  // Your code here.
   if (arr.length === 0) {return null;}
-  var sliced = 0;
+  var spliced = 0;
 
-  for (var i = 0; i < arr.length; i++) {
-    slice = 0;
-    for (var j = i + 1; j < arr.length; j++) {
+  for (var i = 0; i <= arr.length; i++) {
+    spliced = 0;
+    for (var j = i + 1; j <= arr.length; j++) {
       if (arr[j] === arr[i]) {
         // [2, 8, 2, 8, 8, 9]. example
         // slice out the matched value
-        arr.slice(j, 1)
-        sliced++;
+        arr.splice(j, 1)
+        spliced++;
       }
-      if (sliced % 2 === 1) {return arr[i];}
       // slice out i because we found no match for it in entire arr
-      arr.slice(i, 1)
     }
+    if (spliced % 2 === 1) {return arr[i];}
+    // arr.splice(i, 1)
   }
+  return null;
 }
-var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
+
+var onlyEven = evenOccurrence([1, 3, 8, 8, 2, 6, 8, 6, 6]);
 console.log(onlyEven); //  4
 
 //if find the same, slice out the element from array.
