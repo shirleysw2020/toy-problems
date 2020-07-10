@@ -11,17 +11,5 @@
 */
 
 var evenOccurrence = function(arr) {
-  let occurances = {};
-  arr.map((num, index) => {
-    occurances[num] ? occurances[num][1]++ : occurances[num] = [index, 1];
-  });
-  let result = [];
-  for (let key in occurances) {
-    if (occurances[key][1] % 2 === 0) {
-      if (!result[0] || result[0] > occurances[key][0]) {
-        result = [[occurances[key][0]], key];
-      }
-    }
-  }
-  return result[1];
+  // Your code here.
 };
