@@ -34,5 +34,28 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+  // keep track of swaps
+  var swap;
+  // outside loop looks at first element and increment
+  for (var i = 0; i < array.length; i++) {
+    // inner loop looks at one after first element  and increment
+    for (var j = i + 1; j < array.length; j++) {
+      //  if value first element is greater than next element
+      if (array[i] > array[j]) {
+      // es6 swap 2 variables:  [arr[x],arr[y]] = [arr[y],arr[x]]
+        // swap the variables
+        [array[i],array[j]] = [array[j],array[i]];
+        swap = true;
+    // else do nothing and end this loop so we can compare next variables
+      } else {
+        swap = false;
+        // break??
+      }
+    }
+  }
+  // return array which we mutated in place
+  return array;
 };
+          //i  j
+bubbleSort([2, 1, 3]); // yields [1, 2, 3]
+          //j  i
