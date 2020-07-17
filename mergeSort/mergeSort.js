@@ -1,11 +1,6 @@
 /**
  * Implement a function that sorts an array of numbers using the "mergesort" algorithm.
  *
- * Mergesort is an optimized sorting algorithm which is a common choice to implement `sort`
- * methods in standard libraries as an alternative to quicksort or heapsort. (For example,
- * Firefox's Array.sort method uses a tuned mergesort; the WebKit engine used by Chrome and
- * Safari uses quicksort for numeric arrays, and mergesort for arrays of strings.)
- *
  * Mergesort uses a divide-and-conquer strategy. It begins by treating the input list of length N
  * as a set of N "sublists" of length 1, which are considered to be sorted. Adjacent sublists are then
  * "merged" into sorted sublists of length 2, which are merged into sorted sublists of length 4, and so
@@ -97,6 +92,30 @@
 
 
 
-var mergeSort = function(array) {
+var mergeSort = function(arr) {
   // Your code here.
+  // split array in half (repeat)
+  // if array length is greater than 2
+    // call mergeSort on array to keep splitting
+  // if second el smaller than first el
+    // swap them!
+
+  // if array length is less than or equal 1
+  if (arr.length <= 1) {
+    return arr;
+  }
+  // find midpoint
+  const mid = Math.floor(arr.length / 2);
+
+  // split first and second
+  var first = arr.slice(0, mid);
+  var second = arr.slice(mid);
+
+  // Using recursion to combine the left and right
+  // rejoin
+  );
+
+
 };
+
+console.log(mergeSort([4,7,4,3,9,1,2]))
