@@ -32,7 +32,34 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  // thoughts:
+  // math.random to randomize(O(1)? takes a random suit and a random value add them together.
+  // ? but how to make sure you get to all the values with no repeat?
+  // need to grab suits and values
+  //
+  // save deck of ordered deck
+  var orderedDeck = orderedDeck();
+  // sort (O(n2) or O(n log n)) the cards both ascending and descending randomly
+  var shuffledDeck = orderedDeck.sort((a,b) => 0.5 - Math.random());
+  return shuffledDeck;
+
+  // method2: attempting O(n):________________________________________
+  // use math.random * 10 to get a whole number, this is like a order "weight" for my current card.
+  var shuffledRes = [];
+  var orderedDeck = orderedDeck();
+  // while deck of cards (array) still has card
+  for (var i = 0; i < orderedDeck.length; i++) {
+    // assign one card its order "weight", if i + 1 (next card) has greater math.random num
+    var current = orderedDeck[i];
+    var currentOrderWeight = Math.random() * 10;
+    shuffledRes.push(orderedDeck[i])
+      if (Math.random() * 10 >= currentOrderWeight) {
+        // put it after first card
+        shuffledRes.push(orderedDeck[i + 1]);
+      } else {
+        // put it before first card
+        shuffledRes.unshift(orderedDeck[i + 1]);
+      }
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +77,5 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+console.log(shuffleDeck(orderedDeck()));
