@@ -32,35 +32,35 @@
  */
 
 var shuffleDeck = function(deck) {
-  // thoughts:
   // math.random to randomize(O(1)? takes a random suit and a random value add them together.
   // ? but how to make sure you get to all the values with no repeat?
-  // need to grab suits and values
-  //
-  // save deck of ordered deck
-  var orderedDeck = orderedDeck();
+
   // sort (O(n2) or O(n log n)) the cards both ascending and descending randomly
-  var shuffledDeck = orderedDeck.sort((a,b) => 0.5 - Math.random());
+  var shuffledDeck = deck.sort((a,b) => 0.5 - Math.random());
   return shuffledDeck;
 
-  // method2: attempting O(n):________________________________________
+  // _________________method2: attempting O(n) time:___________________got an undefined value and not as random as my first solution_____________________
   // use math.random * 10 to get a whole number, this is like a order "weight" for my current card.
-  var shuffledRes = [];
-  var orderedDeck = orderedDeck();
-  // while deck of cards (array) still has card
-  for (var i = 0; i < orderedDeck.length; i++) {
-    // assign one card its order "weight", if i + 1 (next card) has greater math.random num
-    var current = orderedDeck[i];
-    var currentOrderWeight = Math.random() * 10;
-    shuffledRes.push(orderedDeck[i])
-      if (Math.random() * 10 >= currentOrderWeight) {
-        // put it after first card
-        shuffledRes.push(orderedDeck[i + 1]);
-      } else {
-        // put it before first card
-        shuffledRes.unshift(orderedDeck[i + 1]);
-      }
+  // var shuffledRes = [];
+  // // var deck = orderedDeck();
+  // for (var i = 0; i < deck.length; i++) {
+  //   // assign current card a random order "weight"
+  //   var currentOrderWeight = Math.random() * 10;
+  //   // push first card into result array as default
+  //   shuffledRes.push(deck[i])
+  //     // if current math.random num gives greater num than previous math.random
+  //     if (Math.random() * 10 >= currentOrderWeight && i < deck.length - 1) {
+  //       // put it after first card
+  //       shuffledRes.push(deck[i + 1]);
+  //     } else {
+  //       // put it before first card
+  //       shuffledRes.unshift(deck[i + 1]);
+  //     }
+
+  // }
+  // return shuffledRes;
 };
+
 
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
@@ -79,3 +79,4 @@ var orderedDeck = function() {
 };
 
 console.log(shuffleDeck(orderedDeck()));
+// console.log(orderedDeck());
