@@ -76,6 +76,7 @@
  *   complexity is (spoiler alert!) much lower. Why is that?
  *
  *
+ *
  * Extra credit:
  *   One of the benefits of mergesort over e.g. quicksort is that it is "stable"; assuming the merge
  *   step is properly implemented, list items with the same value will remain in the same order they were
@@ -90,32 +91,42 @@
  *
  */
 
-
-
+//  Complexity: O(n log n)
 var mergeSort = function(arr) {
-  // Your code here.
-  // split array in half (repeat)
-  // if array length is greater than 2
-    // call mergeSort on array to keep splitting
-  // if second el smaller than first el
-    // swap them!
+  if (arr.length <= 1) {return arr;}
+  var mid = Math.floor(arr.length / 2);
+  var left = mergeSort(arr.slice(0, mid));//5
+  var right = mergeSort(arr.slice(mid));//6
 
-  // if array length is less than or equal 1
-  if (arr.length <= 1) {
-    return arr;
+  return merge(left, right);
+}
+
+function merge(arr1, arr2) {
+  var res = [];
+  var i = 0;
+  var j = 0;
+  // while both arr1 and arr2 have something in the array to compare
+  while (i < arr1.length && j < arr2.length) {
+    // if i is smaller
+    if (arr2[j] >= arr1[i]) {
+      // push i into result and increment i
+      res.push(arr1[i]);
+      i++;
+    } else {
+      res.push(arr2[j]);
+      j++;
+    }
   }
-  // find midpoint
-  const mid = Math.floor(arr.length / 2);
-
-  // split first and second
-  var first = arr.slice(0, mid);
-  var second = arr.slice(mid);
-
-  // Using recursion to combine the left and right
-  // rejoin
-  );
-
-
+  // if we hit the end of one of the array, push the rest into result
+  while (i < arr1.length) {
+    res.push(arr1[i]);
+    i++;
+  }
+  while (j < arr2.length) {
+    res.push(arr2[j]);
+    j++;
+  }
+  return res;
 };
 
 console.log(mergeSort([4,7,4,3,9,1,2]))
