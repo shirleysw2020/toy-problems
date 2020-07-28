@@ -26,18 +26,38 @@
   *
   */
 
-/*
- * Basic tree that stores a value.
- */
-
+//Basic tree that stores a value.
 var Tree = function(value) {
   this.value = value;
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+filter = function (value, depth) {
+  return depth === 1;
 };
 
+
+Tree.prototype.DFSelect = function(filter) {
+  var res = [];
+
+  function filterNodes(node, filter, depth) {
+    // call filter on first root node, if it fits filter's criteria
+    if (filter(node.value, depth)) {
+      // push it into result array
+      res.push(node.value);
+    }
+    // check if there's children
+    if (!node.children || node.children.length === 0) return;
+    // if current node has children, loop over them
+    for (var i = 0; i < node.children.length; i++) {
+      // call filter on currentChild. which is an object with possibly more children
+      filterNodes(node.children[i], filter, depth + 1);
+    }
+  }
+
+  filterNodes(this, filter, 0);
+  return res;
+};
 
 
 /**
@@ -93,3 +113,14 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+var root1 = new Tree(1);
+var branch2 = root1.addChild(2);
+var branch3 = root1.addChild(3);
+var leaf4 = branch2.addChild(4);
+
+console.log(root1.DFSelect(function (value, depth) {
+   return depth === 1;
+}));
+// [2, 3]
