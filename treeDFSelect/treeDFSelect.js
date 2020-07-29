@@ -47,7 +47,7 @@ Tree.prototype.DFSelect = function(filter) {
       res.push(node.value);
     }
     // check if there's children
-    if (!node.children || node.children.length === 0) return;
+    if (!node.children) return;
     // if current node has children, loop over them
     for (var i = 0; i < node.children.length; i++) {
       // call filter on currentChild. which is an object with possibly more children
