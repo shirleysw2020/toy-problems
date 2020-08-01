@@ -7,13 +7,13 @@
   * for which the filter returns true.
   *
   * Example:
-  *   var root1 = new Tree(1);
-  *   var branch2 = root1.addChild(2);
-  *   var branch3 = root1.addChild(3);
-  *   var leaf4 = branch2.addChild(4);
-  *   var leaf5 = branch2.addChild(5);
-  *   var leaf6 = branch3.addChild(6);
-  *   var leaf7 = branch3.addChild(7);
+var root1 = new Tree(1);
+var branch2 = root1.addChild(2);
+var branch3 = root1.addChild(3);
+var leaf4 = branch2.addChild(4);
+var leaf5 = branch2.addChild(5);
+var leaf6 = branch3.addChild(6);
+var leaf7 = branch3.addChild(7);
   *   root1.BFSelect(function (value, depth) {
   *     return value % 2;
   *   })
@@ -35,25 +35,24 @@ var Tree = function(value) {
   this.children = [];
 };
 
-
-
 Tree.prototype.BFSelect = function(filter) {
-  let res = [];
-  const search = (node, depth) => {
-    if (filter(node.value, depth)) {
-      res.push(node.value);
+  var res = [], queue = [], depthQueue = [];
+  queue.push(this);
+  depthQueue.push(0);
+  while(queue.length) {
+    current = queue.shift();
+    currentDepth = depthQueue.shift();
+    if (filter(current.value, currentDepth)) {
+      res.push(current.value);
     }
-    if (node.children.length > 0) {
-      for (let i = 0; i < node.children.length; i++) {
-        search(node.children[i], depth + 1);
-      }
-    } else {
-      return;
+    for (const child of current.children) {
+      console.log(child.value);
+      queue.push(child);
+      depthQueue.push(currentDepth + 1);
     }
-  };
-  search(this, 0);
+  }
   return res;
-};
+}
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
@@ -108,3 +107,17 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+// var root1 = new Tree(1);
+// var branch2 = root1.addChild(2);
+// var branch3 = root1.addChild(3);
+// var leaf4 = branch2.addChild(4);
+// var leaf5 = branch2.addChild(5);
+// var leaf6 = branch3.addChild(6);
+// var leaf7 = branch3.addChild(7);
+
+// const testsolution = root1.BFSelect(function (value, depth) {
+//   return value % 2;
+// })
+// console.log(testsolution);// [1, 3, 5, 7]
