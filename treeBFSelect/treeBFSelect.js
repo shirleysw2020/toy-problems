@@ -37,8 +37,10 @@ var Tree = function(value) {
 
 Tree.prototype.BFSelect = function(filter) {
   var res = [], queue = [], depthQueue = [];
+  // put first node in queue
   queue.push(this);
   depthQueue.push(0);
+  // while queue has node left
   while(queue.length) {
     current = queue.shift();
     currentDepth = depthQueue.shift();

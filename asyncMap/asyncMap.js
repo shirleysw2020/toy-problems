@@ -37,6 +37,33 @@
  *
  */
 
-
 var asyncMap = function(tasks, callback) {
+  // loop over tasks and invoke them
+  // pass the result of tasks function to callback
+  // invoke callback on previou array results
+  var arrayOfPromises = tasks.map(function(task){
+    return new Promise(task);
+  });
+
+  return Promise.all(arrayOfPromises).then(function(values){
+    callback(values);
+  })
 };
+
+// var testAsyncMap = asyncMap([
+//     function(cb){
+//      setTimeout(function(){
+//         cb('one');
+//       }, 200);
+//     },
+//     function(cb){
+//       setTimeout(function(){
+//         cb('two');
+//       }, 100);
+//     }
+//    ],
+//     function(results){
+//       console.log(results); // ['one', 'two']
+//    });
+
+// console.log(testAsyncMap);
