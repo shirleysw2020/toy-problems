@@ -38,18 +38,63 @@
  * evenNumbers.includes(2) should be true, evenNumbers.includes(3) should be false
  */
 
-
+//  end and step are optional
 var Range = function(start, end, step) {
+  this.start = start;
+  this.end = end;
+  this.step = step || 1;
 };
 
 Range.prototype.size = function () {
+  // just incase if start is 0 we dont wannna do num / 0 -> give us infinity
+  if (this.start === 0) {
+    this.start = this.start + 1;
+    this.end = this.end + 1;
+  } else {
+    this.start = this.start;
+  }
+  // if end exist then do end minus start divide by step
+  return this.end ? Math.floor((this.end - this.start) / this.start) :
+  Math.floor(this.start / this.step);
 };
 
 Range.prototype.each = function (callback) {
+  if (this.start < this.end) {
+    for (var i = this.start; i <= this.end; i += this.step) {
+      callback(i);
+    }
+    // numbers descending
+  } else if (this.start > this.end) {
+    if (this.step < 0) {
+      for (var i = this.start; i >= this.end; i += this.step) {
+        callback(i);
+      }
+      // if no step given
+    } else {
+      for (var i = this.start; i >= this.end; i -= this.step) {
+        callback(i);
+      }
+    }
+  }
 };
 
 Range.prototype.includes = function (val) {
+  // if end doesn't exist
+  if (isNaN(this.end)) {
+    return this.start === val;
+    // if end exist
+  } else if (this.end && val <= this.end && val >= this.start) {
+    return true;
+  }
+  return false
 };
 
-var range = new Range(1);
 
+var myRange = new Range(0,10);
+console.log('whats myrange',myRange);
+console.log('whats myrange size',myRange.size());
+console.log('what myRange include:', myRange.includes(4));
+
+var evenNumbers = new Range(2,100,2);
+console.log('whats evenNumbers size',evenNumbers.size());
+console.log('what evennumbers include:', evenNumbers.includes(9));
