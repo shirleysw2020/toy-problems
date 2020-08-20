@@ -54,6 +54,29 @@ Tree.prototype.BFSelect = function(filter) {
     }
   }
   return res;
+
+  // recursion method:
+  //     1
+  //   2   3
+  // 4
+  // function helper(nodes, depth, res) {
+  //   var nextNodes = [];
+  //   for (var i = 0; i < nodes.length; i++) {
+  //     if (filter(nodes[i].value, depth)) {
+  //       res.push(nodes[i].value);
+  //     }
+  //     // [[[]]] wrong
+  //     // take all elements inside nodes i children and place it into a new array
+  //     nextNodes = [...nextNodes, ...nodes[i].children];   //[2, 3]
+  //   }
+  //   // check if nextNodes be empty?
+  //   if (nextNodes.length == 0) {
+  //     return res;
+  //   } else {
+  //     return helper(nextNodes, depth + 1, res);
+  //   }
+  // }
+  // return helper([this], 0, [])
 }
 
 /**

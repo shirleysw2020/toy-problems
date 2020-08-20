@@ -30,21 +30,58 @@
  * You will need a doubly-linked list (provided).
  */
 
+// have to rememebr when we set
+//  and get
+// always eliminate/remove from least set from data and least get from date
 var LRUCache = function (limit) {
+  this.map = {};
+  this.size = 0;
+  this.limit = limit;
+  this.store = new List();
+  this.store.head = new ListNode();
+  this.store.tail = new ListNode();
 };
 
 var LRUCacheItem = function (val, key) {
+  this.key = key;
+  this.val = val;
 };
 
 LRUCache.prototype.size = function () {
+  return this.size;
 };
 
 LRUCache.prototype.get = function (key) {
+  if (!this.map[key]) {
+    return null;
+  } else {
+    // remove head
+    const targetNodeVal = this.map[key];
+    this.store.shift();
+    this.map[targetNode]
+    return this.tail.prev;
+    // push to tail
+    return this.map[key];
+  }
 };
 
 LRUCache.prototype.set = function (key, val) {
+  // if reach limit
+  if (this.limit === limit) {
+    // have to use pop and shift to keep size of cache within limit
+    console.log('test');
+  } else {
+    this.storage[key] = val;
+  }
+  // else
+    // push key and val to end of list
 };
 
+// var cache = new LRUCache(3); // limit of 3 items
+// console.log('whats cache fn?', cache);
+// console.log('whats cache size?', cache.set("item1", 1));
+// console.log('whats cache size?', cache.size());
+// console.log('lets get cache:', cache.get());
 
 
 var List = function () {
