@@ -29,10 +29,12 @@ var makeHashTable = function() {
     var pair;
     for (var i = 0; i < pairs.length; i++) {
       pair = pairs[i];
-      if (pair && pair[0] === key) {
-        return pair[1];
+      if (pair[0] === key) {
+        pair[1] = value;
+        return;
       }
     }
+    pairs.push([key, value]);
   };
 
   result.retrieve = function(/*...*/ ) {
