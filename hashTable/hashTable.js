@@ -20,19 +20,49 @@ var makeHashTable = function() {
   var result = {};
   var storage = [];
   var storageLimit = 1000;
-  result.insert = function(/*...*/ 
-) {
+
+  result.insert = function(key, value) {
     // TODO: implement `insert()`
+    var index = getIndexBelowMaxForKey(str, storageLimit);
+    storage[index] = storage[index] || [];
+    var pairs = storage[index];
+    var pair;
+    for (var i = 0; i < pairs.length; i++) {
+      pair = pairs[i];
+      if (pair && pair[0] === key) {
+        return pair[1];
+      }
+    }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
+  result.retrieve = function(/*...*/ ) {
     // TODO: implement `retrieve()`
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var pairs = storage[index];
+    if (!pairs) { return; }
+    var pair;
+    for (var i = 0; i < pairs.length; i++) {
+      pair = pairs[i];
+      if (pair && pair[0] === key) {
+        return pair[1];
+      }
+    }
   };
 
-  result.remove = function(/*...*/ 
-) {
+  result.remove = function(/*...*/ ) {
     // TODO: implement `remove()`
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var pairs = storage[index];
+    var pair;
+    for (var i = 0; i < pairs.length; i++) {
+      pair = pairs[i];
+      if (pair[0] === key) {
+        var value = pair[1];
+        pairs.splice(i, 1);
+        return value;
+      }
+    }
+    return result;
   };
 
   return result;
