@@ -23,21 +23,32 @@ var makeHashTable = function() {
 
   result.insert = function(key, value) {
     // TODO: implement `insert()`
+    // 9a4fd58fnh573u56h - an exmaple of a hash
+    // find which bucket to store info
     var index = getIndexBelowMaxForKey(str, storageLimit);
+    // store it in storage
+    // if nothing there, just put empty array for now (main purpose!)
+    // if there's something then dont touch it
     storage[index] = storage[index] || [];
+    // assign the bucket to pairs variable
     var pairs = storage[index];
     var pair;
+    // go thru bucket
     for (var i = 0; i < pairs.length; i++) {
+      // pair is an object
       pair = pairs[i];
+      // see if the key matches
       if (pair[0] === key) {
+        // update the second element of array.
         pair[1] = value;
         return;
       }
     }
+    // if key not found, push in a new pair
     pairs.push([key, value]);
   };
 
-  result.retrieve = function(/*...*/ ) {
+  result.retrieve = function(key) {
     // TODO: implement `retrieve()`
     var index = getIndexBelowMaxForKey(key, storageLimit);
     var pairs = storage[index];
@@ -51,7 +62,7 @@ var makeHashTable = function() {
     }
   };
 
-  result.remove = function(/*...*/ ) {
+  result.remove = function(key) {
     // TODO: implement `remove()`
     var index = getIndexBelowMaxForKey(key, storageLimit);
     var pairs = storage[index];

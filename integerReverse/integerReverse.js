@@ -18,7 +18,13 @@ function reverseInteger(number) {
   }
   return revNumber;
 }
-// console.log('mode 10:', 876 % 10)
+
+//number = 876
+//revnumber = (0 * 10 ) + 876 % 10 --> (6)
+//revnumber = 6
+//number = 876/10 --> (87.6)
+
+console.log('mode 10:', 876 % 10)
 // console.log('678 mode 10', 678 % 10)
-// console.log('876 / 10 is: ', 876 / 10)
-console.log(reverseInteger(876));
+console.log('87.6 % 10 is: ', 87.6 % 10)
+console.log(reverseInteger(98756));
