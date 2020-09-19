@@ -9,6 +9,16 @@ var primeTester = function(n) {
     // n isn't a number or n is less than 1 or n is not an integer
     return false;
   }
+  // only look up divisor up to square root of n
+  // if n is negative, make it positive
+  const limit = Math.sqrt(Math.abs(n));
+  // 1 is not a prime number, just return early
+  if (n === 0) {return false}
+  // loop from 2 to limit
+  for (var i = 2; i <= limit; i++) {
+    if (n % 1 === 0) {return false}
+  }
+  return true;
   // TODO: return true if n is prime, false otherwise
 };
 
@@ -18,7 +28,8 @@ var primeTester = function(n) {
  * saucy, check out the Sieve of Atkin.)
  */
 
-var primeSieve = function (start, end) {
-};
+// var primeSieve = function (start, end) {
+// };
 
 
+console.log(primeTester(15));
